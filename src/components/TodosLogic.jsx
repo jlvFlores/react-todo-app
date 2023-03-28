@@ -8,44 +8,42 @@ const TodosLogic = () => {
     {
       id: uuidv4(),
       title: 'Make a todo list',
-      completed: false
+      completed: false,
     },
     {
       id: uuidv4(),
       title: 'Feed the cats',
-      completed: true
+      completed: true,
     },
     {
       id: uuidv4(),
       title: 'Cure hungover',
-      completed: false
-    }
+      completed: false,
+    },
   ]);
 
   const handleChange = (id) => {
-    setTodos((prevState) =>
-      prevState.map((todo) => {
-        if (todo.id === id) {
-          return {
-            ...todo,
-            completed: !todo.completed,
-          };
-        }
-        return todo;
-      })
-    );
+    setTodos((prevState) => prevState.map((todo) => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          completed: !todo.completed,
+        };
+      }
+      return todo;
+    }));
   };
 
   const deleteTodo = (id) => {
     setTodos([
-      ...todos.filter((todo) => todo.id !== id)
+      ...todos.filter((todo) => todo.id !== id),
     ]);
   };
 
   const addTodoItem = (title) => {
     const newTodo = {
       id: uuidv4(),
-      title: title,
+      title,
       completed: false,
     };
     setTodos([...todos, newTodo]);
@@ -57,6 +55,6 @@ const TodosLogic = () => {
       <TodoList todosProps={todos} handleChange={handleChange} deleteTodo={deleteTodo} />
     </div>
   );
-}
+};
 
 export default TodosLogic;
